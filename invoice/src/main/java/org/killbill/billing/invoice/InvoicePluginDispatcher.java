@@ -59,13 +59,16 @@ public class InvoicePluginDispatcher {
     // subsequent plugins should have access to items added by previous plugins
     //
     public List<InvoiceItem> getAdditionalInvoiceItems(final Invoice originalInvoice, final CallContext callContext) throws InvoiceApiException {
+    	log.info("InvoicePluginDispatcher : getAdditionalInvoiceItems");
         // We clone the original invoice so plugins don't remove/add items
         final Invoice clonedInvoice = (Invoice) ((DefaultInvoice) originalInvoice).clone();
         final List<InvoiceItem> additionalInvoiceItems = new LinkedList<InvoiceItem>();
         final List<InvoicePluginApi> invoicePlugins = getInvoicePlugins();
         for (final InvoicePluginApi invoicePlugin : invoicePlugins) {
+        	log.info("InvoicePluginDispatcher-invoicePlugin:" + invoicePlugin);
             final List<InvoiceItem> items = invoicePlugin.getAdditionalInvoiceItems(clonedInvoice, ImmutableList.<PluginProperty>of(), callContext);
             if (items != null) {
+            	log.info("InvoicePluginDispatcher-invoicePlugin: new line itmes:" + items);
                 for (final InvoiceItem item : items) {
                     validateInvoiceItemFromPlugin(item, invoicePlugin);
                     additionalInvoiceItems.add(item);
