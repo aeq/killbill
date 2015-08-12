@@ -29,6 +29,11 @@
     <name>killbill-profiles-killbill</name>
     <dependencies>
         <dependency>
+            <groupId>ca.aeq</groupId>
+            <artifactId>couponjson</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <scope>compile</scope>
@@ -336,11 +341,6 @@
         <dependency>
             <groupId>org.weakref</groupId>
             <artifactId>jmxutils</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>ca.aeq</groupId>
-            <artifactId>couponjson</artifactId>
-            <version>0.0.1</version>
         </dependency>
     </dependencies>
     <build>
